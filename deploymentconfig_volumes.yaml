@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: fs-dsi-service
+  name: fs-dsi-service
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: fs-dsi-service
+    spec:
+      containers:
+      - name: fs-dsi-service
+        envFrom:
+        - configMapRef:
+            name: fs-dsi-service-config
+        image: ignored:ignored
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /_ping
+            port: 7777
+          initialDelaySeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /_ping
+            port: 7777
+        resources:
+          limits:
+            cpu: 2
+            memory: 2048Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        volumeMounts:
+        - mountPath: /esb/logs
+          name: esb
+        - mountPath: /mnt/secrets
+          name: secrets
+          readOnly: true
+      # securityContext:
+      #   fsGroup: 65534            
+      volumes:
+      - name: esb
+        persistentVolumeClaim:
+          claimName: logvol-esb-nfs-0
+      - name: secrets
+        secret:
+          secretName: "keystore.jks-secret"
+          items:
+          - key: keystore.jks
+            path: keystore.jks
+      imagePullSecrets:
+      - name: devharbor-pull-secret
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      - fs-dsi-service
+      from:
+        kine: ImageStreamTag
+        name: harbor-fs-dsi-service:stable
