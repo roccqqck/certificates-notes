@@ -1,4 +1,4 @@
-Convert pem private key and crt -> pkcs12
+## Convert pem private key and crt -> pkcs12
 
  
 ```
@@ -15,14 +15,30 @@ openssl pkcs12 -export \
  
 
  
+## convert pkcs12 -> PEM
+ 
+```
+openssl pkcs12 -in path.p12 -out newfile.crt.pem -clcerts -nokeys
+openssl pkcs12 -in path.p12 -out newfile.key.pem -nocerts -nodes
+```
 
+After that you have:
+
+certificate in ```newfile.crt.pem```
+
+private key in ```newfile.key.pem```
+
+ 
+To put the certificate and key in the same file without a password, use the following, as an empty password will cause the key to not be exported:
+
+```
+openssl pkcs12 –in path.p12 -out newfile.pem –nodes
+```
  
 
  
 
- 
-
-Convert Pkcs12 -> jks keystore
+## Convert Pkcs12 -> jks keystore
 
  
 ```
@@ -36,7 +52,7 @@ keytool -importkeystore -deststorepass PASSWORD_STORE -destkeypass PASSWORD_KEYP
 
  
 
-Import the CA into the truststore, using the following command:
+## Import the CA into the truststore, using the following command:
 ```
 keytool -list -v -keystore ./cacerts
 ```
