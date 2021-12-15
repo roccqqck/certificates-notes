@@ -7,6 +7,11 @@ openssl req -in mycsr.csr -noout -text
 openssl x509 -in certificate.crt -text -noout
 ```
 
+# Check a PKCS#12 file (.pfx or .p12)
+```
+openssl pkcs12 -info -in keyStore.p12 -nodes
+```
+
 # get crt from website
 ```
 openssl s_client -connect ${REMHOST}:${REMPORT}
