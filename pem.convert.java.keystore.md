@@ -1,4 +1,4 @@
-pem private key and crt to pkcs12
+Convert pem private key and crt -> pkcs12
 
  
 ```
@@ -10,7 +10,7 @@ openssl pkcs12 -export \
 
 -out prdocp.p12 \
 
--name *.apps.devocp.firstbank.com.tw
+-name *.ntu.edu.tw
 ```
  
 
@@ -22,17 +22,15 @@ openssl pkcs12 -export \
 
  
 
-Pkcs12 to keytool jks
+Convert Pkcs12 -> jks keystore
 
  
 ```
 keytool -v -importkeystore -srckeystore prdocp.p12 -srcstoretype PKCS12 -destkeystore tml-tm.jks -deststoretype JKS
 ```
- 
-
- 
-
- 
+```
+keytool -importkeystore -deststorepass PASSWORD_STORE -destkeypass PASSWORD_KEYPASS -destkeystore keystore.jks -srckeystore pkcs.p12 -srcstoretype PKCS12 -srcstorepass STORE_PASS -alias NAME
+```
 
  
 
@@ -40,7 +38,17 @@ keytool -v -importkeystore -srckeystore prdocp.p12 -srcstoretype PKCS12 -destkey
 
 Import the CA into the truststore, using the following command:
 ```
+keytool -list -v -keystore ./cacerts
+```
+```
 keytool -import -v -trustcacerts -alias endeca-ca -file eneCA.pem -keystore truststore.ks
+
+keytool -importcert -file nexus_prd.cer   -keypass changeit -storepass changeit -noprompt -alias prdnexus  -keystore ./cacerts
+```
+```
+keytool  -delete -alias prdnexus ./cacerts
+
+keytool  -delete -alias prdnexus  -keystore ./cacerts  -storepass changeit
 ```
 
 https://docs.oracle.com/cd/E35976_01/server.740/es_admin/src/tadm_ssl_convert_pem_to_jks.html
