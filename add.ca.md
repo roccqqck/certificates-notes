@@ -18,6 +18,8 @@ Be sure that the filename ends with `.crt` and that its content starts with `---
 
 
  # if it is not working , Edit the ```CAfile``` or add crt file to ```CApath```
+
+check the CAfile and CApath
 ```
 curl -v https://google.com
 ```
