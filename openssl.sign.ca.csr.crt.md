@@ -1,12 +1,16 @@
+reference 
+
+https://blog.davy.tw/posts/use-openssl-to-sign-intermediate-ca/
 # 安裝openssl
 ```
 yum install openssl mod_ssl
 ```
 
-# 產生CSR
-要產生 CSR，請依照下列指令執行，您可以複製貼上到您的電腦即可：
+
+
+# 自簽CA或憑證
 ```
-openssl req -nodes -newkey rsa:2048 -sha256 -keyout myserver.key -out server.csr
+openssl req -x509 -new -nodes -sha256 -days 7300 -newkey rsa:2048 -keyout root.key -out root.crt
 ```
 下方解釋了此命令的部份參數。如果您有興趣了解所有參數，請參考 `OpenSSL 官方文件 <<https://www.openssl.org/docs/man1.1.0/man1/req.html>`_ 。
 
@@ -37,27 +41,54 @@ A challenge password: 建議保留空白即可。
 An optional company name: 建議保留空白即可。
 
 
-# 自簽
+
+
+# 產生中繼CA的CSR
 ```
-openssl req -x509 -new -nodes -sha256 -days 3650 -newkey rsa:2048 -keyout server.key -out server.crt
+openssl req -nodes -newkey rsa:2048 -sha256 -keyout middle.key -out middle.csr
+```
+
+# 用ROOT CA產生中繼CA的憑證 
+```
+openssl x509 -req -days 3650 -CA root.crt -CAkey root.key -in middle.csr -out middle.crt -set_serial 10
+```
+```-set_serial 10``` 下面還可以簽10層憑證
+
+
+# 產生server的CSR
+```
+openssl req -nodes -newkey rsa:2048 -sha256 -keyout server.key -out server.csr
+```
+
+# 用中繼CA產生server的憑證
+```
+openssl x509 -req -days 730 -CA middle.crt -CAkey middle.key -in server.csr -out server.crt -set_serial 0
 ```
 
 
 
-# 產生rsa私鑰 有密碼 des3演算法 2048bit
+
+
+
+
+# 產生rsa私鑰 有密碼(des3 aes256演算法) 2048bit
 ```
 openssl genrsa -des3 -out apim.key 2048
+openssl genrsa -aes256 -out apim.key 4096
 ```
 輸入密碼
 
-
+# 產生rsa私鑰無密碼
+```
+openssl genrsa -out apim.key 4096
+```
 
 # 產生csr 證書簽名需求
 ```
 openssl req -sha512 -new -key apim.key -out apim.csr
 ```
 輸入密碼 
-輸入公司 url資訊 : 	*.apps.devocp.firstbank.com.tw
+輸入公司 url資訊 : 	*.ntu.edu.tw
 
 
 
