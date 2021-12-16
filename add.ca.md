@@ -9,7 +9,7 @@
 + run `update-ca-trust extract`
 + test it with `wget https://thewebsite.org`
 
-# debian ubuntu
+# Debian, Ubuntu and Alpine
 On debian and ubuntu the directory is `/usr/local/share/ca-certificates/` and the command to update is `update-ca-certificates`
 
 At least on ubuntu:  
