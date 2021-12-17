@@ -21,7 +21,7 @@ openssl pkcs12 -export \
 
 -certfile root.pem \
 
-certfile uca.pem \
+-certfile uca.pem \
 
 -inkey prdocp_key.pem \
 
