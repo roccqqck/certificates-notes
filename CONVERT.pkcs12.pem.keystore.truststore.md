@@ -12,6 +12,23 @@ openssl pkcs12 -export \
 
 -name *.ntu.edu.tw
 ```
+
+### Convert pem private key and crt -> pkcs12 with root uca crt
+```
+openssl pkcs12 -export \
+
+-in prdocp_crt.pem \
+
+-certfile root.pem \
+
+certfile uca.pem \
+
+-inkey prdocp_key.pem \
+
+-out prdocp.p12 \
+
+-name *.ntu.edu.tw
+```
  
 
  
