@@ -12,6 +12,12 @@ openssl x509 -in certificate.crt -text -noout
 openssl pkcs12 -info -in keyStore.p12 -nodes
 ```
 
+
+# View contents of DER-encoded certificate file
+```
+openssl x509 -inform der -in CERTIFICATE.der -text -noout
+```
+
 # get crt from website
 ```
 openssl s_client -connect ${REMHOST}:${REMPORT}

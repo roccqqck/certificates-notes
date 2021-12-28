@@ -89,3 +89,10 @@ https://docs.oracle.com/cd/E35976_01/server.740/es_admin/src/tadm_ssl_convert_pe
  
 
 https://docs.cloudera.com/documentation/enterprise/5-10-x/topics/cm_sg_openssl_jks.html
+
+
+
+# Convert DER-encoded certificate to PEM
+```
+openssl x509 -inform der -in CERTIFICATE.der -out CERTIFICATE.pem
+```
