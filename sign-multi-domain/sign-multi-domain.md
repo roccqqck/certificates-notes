@@ -56,6 +56,29 @@ openssl req -in server.csr -noout -text
 表示成功
 
 
+
+## 再用CA產生server的憑證
+```
+openssl x509 -req -days 730 -CA middle.crt -CAkey middle.key -in server.csr -out server.crt -set_serial 0 -extensions v3_req -extfile openssl.cnf
+```
+```
+openssl x509 -in server.crt -text -noout
+```
+```
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Key Usage: 
+                Digital Signature, Non Repudiation, Key Encipherment, Certificate Sign, CRL Sign
+            X509v3 Subject Alternative Name: 
+                DNS:www.exampledomain.com, DNS:exampledomain.com, DNS:thesecmaster.com, DNS:mydomain.com, IP Address:127.0.0.1, IP Address:192.168.0.3
+```
+表示成功
+
+
+
+
+
 ## 用```myconfig.cnf```生成無CA自簽名證書 3650天
 ```
 openssl req -x509 -new -nodes -sha256 -days 3650 -newkey rsa:2048 -keyout server.key -out server.crt -extensions v3_req -config myconfig.cnf
