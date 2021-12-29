@@ -1,0 +1,70 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    haproxy.router.openshift.io/timeout: 300s
+  name: apim
+  namespace: ml5-openshift
+spec:
+  host: apim.apps.devocp.firstbank.com.tw
+  to:
+    kind: Service
+    name: tm-svc
+    weight: 100
+  port:
+    targetPort: http-port
+  tls:
+    termination: edge
+    certificate: |-
+      -----BEGIN CERTIFICATE-----
+      MIIDlTCCAn2gAwIBAgIUU7DFTBt39u/es+JQ5ornqckAXn8wDQYJKoZIhvcNAQEL
+      BQAwWjELMAkGA1UEBhMCVFcxCzAJBgNVBAgMAlRXMQswCQYDVQQHDAJUVzEMMAoG
+      A1UECgwDTlRVMQwwCgYDVQQLDANOVFUxFTATBgNVBAMMDCoubnR1LmVkdS50dzAe
+      Fw0yMTEyMjkwNzU3MTNaFw00MTEyMjQwNzU3MTNaMFoxCzAJBgNVBAYTAlRXMQsw
+      CQYDVQQIDAJUVzELMAkGA1UEBwwCVFcxDDAKBgNVBAoMA05UVTEMMAoGA1UECwwD
+      TlRVMRUwEwYDVQQDDAwqLm50dS5lZHUudHcwggEiMA0GCSqGSIb3DQEBAQUAA4IB
+      DwAwggEKAoIBAQDD/0dx9u8gagjqxNC+BmDMj1s5900BE6ZOGX7mFkEqWCu1NNb8
+      j44/fiWqdu1/g3VVGi0kbQlPdko8AVxMiWzVuM5qgYGwTDx2xdnXXGpdUNe0Ul+U
+      S4lMUxZqYw7k3MUMo8ohlHEpxxvxFIie8DI9FIxcRh6r63WuUA/cAYyFBO1fE71r
+      GcVQSj9ZXoVZTDDM0t9l4F6EFPSr6ylQOckidamxYe2F986Sg2Ki06MEeqJZy16D
+      j5JftXo4PQaMJAycFSw6voqmPTDqN9vsehM2A+ZqBoBZ2kLNZLSbMQRQSMFOl32L
+      JfIRjFebDa1m8UaSqu4g/aJ3xCj231PBVg29AgMBAAGjUzBRMB0GA1UdDgQWBBTF
+      GmjqSXa9eNyt2xaBJUTcNuDf7DAfBgNVHSMEGDAWgBTFGmjqSXa9eNyt2xaBJUTc
+      NuDf7DAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAayGdXuqa+
+      EJbveAkB7XMo01ys4N9FVbTzmng4t+pYEw47bz3H6FMMGYHDbRQzTGP8WmY4KaAw
+      rKVBjEmV1/PtztU+cFnI+nKRU8XPaavoUlmJ0lQRITPXcsMNPgUFoGsynBi+in04
+      3Ezl0pLAxKvFB2jnZjYilfGu9IBJar7zI/gg9sJ4uH16ASc6FPKHSNy87lG/yRDZ
+      L35a7N2GvNMuQ2QfhcHxtD+dcK0oLP+s9nJzS5crpErB0EDkUcfntZBMWaq0PCIf
+      vRNWT3VJqC00uFTnxtfjC7pqdlH2dqh5h1U8NPBkmZ77Tc82Aj5Nd0uH/nmQOnVJ
+      H/I7RjSG70FB
+      -----END CERTIFICATE-----
+    key: |-
+      -----BEGIN PRIVATE KEY-----
+      MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDD/0dx9u8gagjq
+      xNC+BmDMj1s5900BE6ZOGX7mFkEqWCu1NNb8j44/fiWqdu1/g3VVGi0kbQlPdko8
+      AVxMiWzVuM5qgYGwTDx2xdnXXGpdUNe0Ul+US4lMUxZqYw7k3MUMo8ohlHEpxxvx
+      FIie8DI9FIxcRh6r63WuUA/cAYyFBO1fE71rGcVQSj9ZXoVZTDDM0t9l4F6EFPSr
+      6ylQOckidamxYe2F986Sg2Ki06MEeqJZy16Dj5JftXo4PQaMJAycFSw6voqmPTDq
+      N9vsehM2A+ZqBoBZ2kLNZLSbMQRQSMFOl32LJfIRjFebDa1m8UaSqu4g/aJ3xCj2
+      31PBVg29AgMBAAECggEBAJOyCTq+JFC+1t1jVxH7aHJ+DPbPfv2yuv3bhJ8KYizw
+      qG8y1FcaLs112Bhu6mXOwFpTEXWDnSJ+N06kj9M1NAiR7SqhUQNzT5UJXzFE+Po8
+      8291K4VqrpoPerLM1upr2ym9O5K2c9hRrKKtII703kbc9zCJvo87LkEfH/RgTm3l
+      iQlZWWg4nyhJMECedNOmeNR8VQU/9HHSzTVbhlDMGAH4r6/U24t8swBT//4iEM5i
+      ECsc+gDOk2c1GQ1LRE0EfFyaDXY1oOMevBRVrc/vwV42oHcunzF6CrosopP+/wqf
+      mDI2IDyx/xUdlcETMfytm+i+CDuTYBa8v1jHqZbd9tkCgYEA4MY3UcMogQi9YTJD
+      MAmqdwoSdM/qbwg6VniJTmtTTK6o1fTXYkOM1tla0GNRmz0hGX3n+R8XtGWlXHZ/
+      7LW7tWOiLUVe0omVS1KHcLHzbalEROowglwQGiSN6CKV7ayJdYfuZq9iND3e2kGA
+      qcanx+F+Zq7vTmgrKw0i8tj1zHMCgYEA3zmlSINYf0u/SqXNT84zEqUlnT4dCD35
+      tEWaq2upsswlkAuusrHlcc2rkioZYLz/qFP3hgpM/J+q81+JsQhs/7RTd/bhwtPu
+      Xhti5tcNycX55EFl+K7LdCSOM/GoIAjN830vimXbIZ3oy+jtAoxvj4QzaxUlawjI
+      LvPumzNK4Q8CgYBPcV8986cOLAObJcOfZ9sq5ZFuXcny4kqUI1gMMlynnpenvzic
+      z1ko2nuBaYj/QBTByMFDSFz9cmuGiY9fH0AvtP4t1/XSnbP5gjrCdvKdkJTDcq4g
+      dN9wDfll0UuCTFftBVUaT+R6qF9qbnpGByNnvugI7M1Bvgl71tHCWTJOxwKBgAb9
+      QxOWKTszH/YyYs9Q4YB/80GNJFORvTPLyh/76wBSLArqkrm9oDWD/w9AijLhOBAJ
+      MQLdZ7OxPCUKpMEKRn9rIgHrlP4IrLn9mYcozKG4tS5UbeDveCdWza0Kr/zwyaIK
+      FWb78XSIATYBQQqHYybXONTtgJJtX/c4ZAwv+vQ5AoGAEJUgz44oeReDfwcJHW8V
+      FH25H/gfurEByOkYcLH4lePIdlD4/QVXlAPxuuOJhu6IhLixTOo/+G8SywDk386E
+      JnvxUq5rcGHPacH9+UABlstzil3XlrFqotgR5csauc0/52JHxSZarfIIZ8fW9aMk
+      GX9XytkTyB6Gpk1cDZJ1r/U=
+      -----END PRIVATE KEY-----
+    insecureEdgeTerminationPolicy: Redirect
