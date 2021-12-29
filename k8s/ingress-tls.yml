@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-ap1-https
+  namespace: api
+spec:
+  tls:
+    - hosts: 
+        - ap1.k8s.ntu.edu.tw
+      secretName: k8s-tls-certificates
+  rules:
+    - host: ap1.k8s.ntu.edu.tw
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: ap1
+              servicePort: 80
