@@ -23,7 +23,7 @@ req_extensions = v3_req # The extensions to add to a certificate request
 ```
 [ v3_req ]
 subjectAltName = @alt_names 
-keyUsage = nonRepudiation, digitalSignature, keyEncipherment, cRLSign, keyCertSign
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 ```
 ```
 [ alt_names ] # multi-domain multi-ip

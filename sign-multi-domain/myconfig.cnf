@@ -221,7 +221,7 @@ authorityKeyIdentifier=keyid,issuer
 # Extensions to add to a certificate request
 
 basicConstraints = CA:FALSE
-keyUsage = nonRepudiation, digitalSignature, keyEncipherment, cRLSign, keyCertSign
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment #, cRLSign, keyCertSign
 
 subjectAltName = @alt_names 
 
