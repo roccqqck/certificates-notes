@@ -49,7 +49,7 @@ openssl req -in server.csr -noout -text
             X509v3 Basic Constraints: 
                 CA:FALSE
             X509v3 Key Usage: 
-                Digital Signature, Non Repudiation, Key Encipherment, Certificate Sign, CRL Sign
+                Digital Signature, Non Repudiation, Key Encipherment
             X509v3 Subject Alternative Name: 
                 DNS:www.exampledomain.com, DNS:exampledomain.com, DNS:thesecmaster.com, DNS:mydomain.com, IP Address:127.0.0.1, IP Address:192.168.0.3
 ```
@@ -69,7 +69,7 @@ openssl x509 -in server.crt -text -noout
             X509v3 Basic Constraints: 
                 CA:FALSE
             X509v3 Key Usage: 
-                Digital Signature, Non Repudiation, Key Encipherment, Certificate Sign, CRL Sign
+                Digital Signature, Non Repudiation, Key Encipherment
             X509v3 Subject Alternative Name: 
                 DNS:www.exampledomain.com, DNS:exampledomain.com, DNS:thesecmaster.com, DNS:mydomain.com, IP Address:127.0.0.1, IP Address:192.168.0.3
 ```
@@ -91,7 +91,7 @@ openssl x509 -in server.crt -text -noout
             X509v3 Basic Constraints: 
                 CA:FALSE
             X509v3 Key Usage: 
-                Digital Signature, Non Repudiation, Key Encipherment, Certificate Sign, CRL Sign
+                Digital Signature, Non Repudiation, Key Encipherment
             X509v3 Subject Alternative Name: 
                 DNS:www.exampledomain.com, DNS:exampledomain.com, DNS:thesecmaster.com, DNS:mydomain.com, IP Address:127.0.0.1, IP Address:192.168.0.3
 ```
