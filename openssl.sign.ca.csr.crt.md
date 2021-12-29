@@ -70,6 +70,27 @@ openssl x509 -req -days 730 -CA middle.crt -CAkey middle.key -in server.csr -out
 
 
 
+### ```nginx.crt``` 必須以pem格式照順序貼上 bundle crt
+```
+-----BEGIN CERTIFICATE-----
+server憑證
+-----END CERTIFICATE-----
+
+-----BEGIN CERTIFICATE-----
+middle uca憑證
+-----END CERTIFICATE-----
+
+-----BEGIN CERTIFICATE-----
+Root ca憑證
+-----END CERTIFICATE-----
+```
+
+
+
+
+
+
+
 
 # 產生rsa私鑰 有密碼(des3 aes256演算法) 2048bit
 ```
