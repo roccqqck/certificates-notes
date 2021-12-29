@@ -101,7 +101,7 @@ openssl rsa -in apim_pass.key -out apim.key
 
 
 
-# 生成自簽名證書 3650天
+# 生成無CA自簽名證書 3650天
 ```
 openssl x509 -req -days 3650 -in apim.csr -signkey apim.no.pass.key -out apim.crt
 ```
