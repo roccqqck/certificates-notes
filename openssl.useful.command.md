@@ -20,7 +20,7 @@ openssl x509 -inform der -in CERTIFICATE.der -text -noout
 
 # get crt from website
 ```
-openssl s_client -connect ${REMHOST}:${REMPORT}
+openssl s_client -showcerts -connect ${REMHOST}:${REMPORT}
 ```
 
 # 指定 TLS 1.2 進行加密連線
