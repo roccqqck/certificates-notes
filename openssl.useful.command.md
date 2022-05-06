@@ -23,6 +23,16 @@ openssl x509 -inform der -in CERTIFICATE.der -text -noout
 openssl s_client -showcerts -connect ${REMHOST}:${REMPORT}
 ```
 
+# decode website crt
+```
+openssl s_client -connect ${REMHOST}:${REMPORT} </dev/null 2>/dev/null | openssl x509 -noout -text | grep DNS:
+```
+
+# download website crt to local PATH
+```
+openssl s_client -showcerts -connect github.com:443 </dev/null 2>/dev/null|openssl x509 -outform PEM >  /usr/local/share/ca-certificates/github.crt
+```
+
 # 指定 TLS 1.2 進行加密連線
 ```
 openssl s_client -connect www.yahoo.com:443 -tls1_2
