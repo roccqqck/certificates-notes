@@ -25,12 +25,17 @@ openssl s_client -showcerts -connect ${REMHOST}:${REMPORT}
 
 # decode website crt
 ```
-openssl s_client -connect ${REMHOST}:${REMPORT} </dev/null 2>/dev/null | openssl x509 -noout -text
+openssl s_client -showcerts -connect ${REMHOST}:${REMPORT} </dev/null 2>/dev/null | openssl x509 -noout -text
 ```
 
-# download website crt to local PATH
+# download website certificates to local PATH
 ```
-openssl s_client -showcerts -connect github.com:443 </dev/null 2>/dev/null|openssl x509 -outform PEM >  /usr/local/share/ca-certificates/github.crt
+openssl s_client -showcerts -connect github.com:443 </dev/null 2>/dev/null | openssl x509 -outform PEM >  /usr/local/share/ca-certificates/github.crt
+```
+
+# download website ca and certificates to local PATH
+```
+openssl s_client -showcerts -connect github.com:443 </dev/null 2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'  >  /usr/local/share/ca-certificates/github.crt
 ```
 
 # 指定 TLS 1.2 進行加密連線
