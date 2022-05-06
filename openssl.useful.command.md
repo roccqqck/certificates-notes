@@ -25,7 +25,7 @@ openssl s_client -showcerts -connect ${REMHOST}:${REMPORT}
 
 # decode website crt
 ```
-openssl s_client -connect ${REMHOST}:${REMPORT} </dev/null 2>/dev/null | openssl x509 -noout -text | grep DNS:
+openssl s_client -connect ${REMHOST}:${REMPORT} </dev/null 2>/dev/null | openssl x509 -noout -text
 ```
 
 # download website crt to local PATH
