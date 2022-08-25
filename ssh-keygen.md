@@ -12,19 +12,35 @@ PasswordAuthentication  yes                    # 密碼登入先別關
 
 產生金鑰
 ```
-ssh-keygen
+ssh-keygen -t rsa -b 2048
+```
+產出的key跟pub預設路徑會在```~/.ssh/```
+```
+cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa
 ```
 
-公鑰上傳到server
+
+
+公鑰上傳到某server的某username
 ```
-ssh-copy-id -i your_key_path username@server_host
+ssh-copy-id  -i  your_key_path/id_rsa  username@server_host
 ```
-路徑會在server的 ```~/.ssh/```
+
+
+pub上傳預設路徑會在```~/.ssh/authorized_keys```
 ```
-cat ~/.ssh/ubuntu_id_rsa.pub 
+cat ~/.ssh/authorized_keys
 ```
 ```
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOZypQABxuCschD6jjRZFr1iPCqzrpo40Mzw6vXRfPlFwF9QJhLm3YYdtnpVekj9e1Y4kUduM924PAiLgfRw/6AJ1ueDR1BEDLeH8gAV1Cc90oPUvitYItPN8F1HrqiT37GZ3wKWKIFw70NL8Hs6BL61F+LgFmfXQDRyp7IIcyK9rmk24yqLSue/DiSbA0y85E4uvV7ekZD2NXeA9AnKHFe/cy614SQv2NNQCwi2ZRuP25du9xGVv0QvCwrZ4ANJky9V7xlO4dFFHqcNXUPQUm8EeRxySVCdTbenqiEQ3flLVBCCCxvnc7ApHlLNc/CZSpcft96xfGB3qOCrRvjb2/ xenby@demo.com
+```
+
+
+測試```ssh```, ```scp```
+```
+ssh  -i  your_key_path/id_rsa   username@server_host
+ssh  -i  your_key_path/id_rsa   ./file.txt  username@server_host:/home/username/
 ```
 
 ## 多台server 多把keys 管理
