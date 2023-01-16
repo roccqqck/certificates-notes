@@ -62,7 +62,7 @@ openssl pkcs12 -in path.p12 -out newfile.pem -nodes
 keytool -v -importkeystore -srckeystore prdocp.p12 -srcstoretype PKCS12 -destkeystore tml-tm.jks -deststoretype JKS
 ```
 ```
-keytool -importkeystore -deststorepass PASSWORD_STORE -destkeypass PASSWORD_KEYPASS -destkeystore keystore.jks -srckeystore pkcs.p12 -srcstoretype PKCS12 -srcstorepass STORE_PASS -alias NAME
+keytool -importkeystore -deststorepass PASSWORD_STORE -destkeypass PASSWORD_KEYPASS -destkeystore keystore.jks -deststoretype JKS -srckeystore pkcs.p12 -srcstoretype PKCS12 -srcstorepass STORE_PASS -alias NAME
 ```
 
  
