@@ -19,9 +19,7 @@ openssl pkcs12 -export \
 
 -in prdocp_crt.pem \
 
--certfile root.pem \
-
--certfile uca.pem \
+-certfile uca_rootca_bundle.pem \
 
 -inkey prdocp_key.pem \
 
