@@ -22,8 +22,8 @@ openssl x509 -inform der -in CERTIFICATE.der -text -noout
 
 # Verify the Integrity of crt and key
 ```
-openssl x509 -noout -modulus -in cert.crt | openssl md5
-openssl rsa -noout -modulus -in privkey.txt | openssl md5
+openssl x509 -noout -modulus -in certificate.crt | openssl md5
+openssl rsa -noout -modulus -in privatekey.key | openssl md5
 ```
 
 
